@@ -11,6 +11,6 @@
 </head>
 <body>
     <h1>Página Home</h1>
-    <a href="pages/categoria/cad_cat.php">Nova categoria</a>
+    <a href="pages/categoria/categoria.php">Categorias</a>
 </body>
 </html>

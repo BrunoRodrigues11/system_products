@@ -14,14 +14,21 @@
 <body>
     <div class="container">
         <diuv class="row">
-            <h1>Nova Categoria</h1>            
+            <h1>
+                <a href="categoria.php">
+                    <button class="btn btn-successs" type="button">
+                        Voltar
+                    </button>
+                </a>    
+            Nova Categoria
+        </h1>            
         </diuv>
         <div class="row">
             <div class="form-control">
-                <form action="php/inc_esp.php" method="post">
+                <form action="php/inc_cat.php" method="post">
                     <div class="mb-3">
                         <label for="" class="form-label">Descrição:</label>
-                        <input type="text" name="nome" class="form-control" maxlength="100" required>                        
+                        <input type="text" name="descricao" class="form-control" maxlength="100" required>                        
                     </div>
                     <div class="md-3">
                         <input type="submit" value="Enviar" class="btn btn-success">
