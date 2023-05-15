@@ -11,6 +11,10 @@
 </head>
 <body>
     <h1>Página Home</h1>
-    <a href="pages/categoria/categoria.php">Categorias</a>
+    <a href="pages/categoria/listagem.php">Categorias</a><br>
+    <a href="pages/vendedor/listagem.php">Vendedores</a><br>
+    <a href="pages/cliente/listagem.php">Clientes</a><br>
+    <a href="pages/venda/listagem.php">Vendas</a><br>
+    <a href="pages/produto/listagem.php">Produtos</a><br>
 </body>
 </html>
