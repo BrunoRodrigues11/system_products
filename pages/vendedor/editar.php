@@ -29,13 +29,13 @@
     ?>
     <div class="container">
         <div class="row">
-            <h1>
             <div class="col-md-3">
                 <button class="btn btn-outline-primary" type="button" id="btn-back">
                     <i class="bi bi-arrow-left-circle"></i>
                     Voltar
                 </button>                
             </div>  
+            <h1>
                 Editar Vendedor
             </h1>
         </div>
