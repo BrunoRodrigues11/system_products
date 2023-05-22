@@ -1,6 +1,8 @@
 <?php
-    session_start();
     include('../../connection/connection.php');
+    if (session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 
     $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
 
@@ -17,30 +19,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deletar Categoria</title>
     <link href="../../node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
     <?php
-        if(isset($_SESSION['msg'])){
-            echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-        }
+        include("../../components/navbar.php");
     ?>
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <button class="btn btn-outline-primary" type="button" id="btn-back">
-                    <i class="bi bi-arrow-left-circle"></i>
-                    Voltar
-                </button>                
-            </div>  
-            <h1>
-                Deletar Categoria
-            </h1>
-        </div>
-        <div class="row">
+        <div class="row pt-3">
             <div class="form-control">
+                <div class="row d-flex align-items-start">
+                    <div class="col-md-2 btn-back">
+                        <button class="btn btn-outline-primary" type="button" id="btn-back">
+                            <i class="bi bi-arrow-left-circle"></i>
+                            Voltar
+                        </button>  
+                    </div>
+                    <div class="col-md-6">            
+                        <h3>
+                            Excluir Categoria
+                        </h3>                
+                    </div>                
+                </div>  
                 <form action="php/delete.php" method="post">
                     <input type="hidden" name="id" value="<?= $row['id'] ?>" required>
                     <div class="mb-3">

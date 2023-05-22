@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     setTimeout(function () {
         alerta.hide();
-    }, 2500);
+    }, 5000);
     
     $(".btn-close").click(function(){
         alerta.hide();     

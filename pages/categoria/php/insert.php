@@ -1,11 +1,10 @@
 <?php
     include('../../../connection/connection.php');
-    if (session_status() !== PHP_SESSION_ACTIVE) {
+    if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
 
     $descricao = filter_input(INPUT_POST,'descricao',FILTER_SANITIZE_STRING);
-
     $query = "INSERT INTO categoria (descricao) VALUES ('$descricao')";
     $result = mysqli_query($conn, $query);
 
@@ -30,6 +29,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

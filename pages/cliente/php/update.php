@@ -1,6 +1,8 @@
 <?php
-    session_start();
-    include_once('../../../connection/connection.php');
+    include('../../../connection/connection.php');
+    if (session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 
     $codigo = filter_input(INPUT_POST,'codigo',FILTER_SANITIZE_NUMBER_INT);
     $nome = filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
@@ -11,7 +13,6 @@
     $email =  filter_input(INPUT_POST,'email',FILTER_SANITIZE_STRING);
     $cpf =  filter_input(INPUT_POST,'cpf',FILTER_SANITIZE_STRING);
     $estado =  filter_input(INPUT_POST,'estado',FILTER_SANITIZE_STRING);
-
     $query = "UPDATE cliente SET nome='$nome', endereco='$endereco', cidade='$cidade', estado='$estado', telefone='$telefone', limite_cred='$limite_cred', cpf='$cpf', email='$email' WHERE codigo = '$codigo'";
     $resultado = mysqli_query($conn, $query);
 
@@ -36,6 +37,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

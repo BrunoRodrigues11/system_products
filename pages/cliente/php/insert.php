@@ -1,6 +1,6 @@
 <?php
     include('../../../connection/connection.php');
-    if (session_status() !== PHP_SESSION_ACTIVE) {
+    if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
 
@@ -12,7 +12,6 @@
     $email =  filter_input(INPUT_POST,'email',FILTER_SANITIZE_STRING);
     $cpf =  filter_input(INPUT_POST,'cpf',FILTER_SANITIZE_STRING);
     $estado =  filter_input(INPUT_POST,'estado',FILTER_SANITIZE_STRING);
-
     $query = "INSERT INTO cliente (nome, endereco, cidade, estado, telefone, limite_cred, cpf, email) VALUES ('$nome', '$endereco', '$cidade', '$estado', '$telefone', '$limite_cred', '$cpf', '$email')";
     $result = mysqli_query($conn, $query);
 
@@ -37,6 +36,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

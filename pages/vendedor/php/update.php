@@ -1,6 +1,8 @@
 <?php
-    session_start();
-    include_once('../../../connection/connection.php');
+    include('../../../connection/connection.php');
+    if (session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 
     $cod = filter_input(INPUT_POST,'cod',FILTER_SANITIZE_NUMBER_INT);
     $nome = filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
@@ -9,7 +11,6 @@
     $estado =  filter_input(INPUT_POST,'estado',FILTER_SANITIZE_STRING);
     $telefone =  filter_input(INPUT_POST,'telefone',FILTER_SANITIZE_STRING);
     $parc_comissao = filter_input(INPUT_POST, 'parc_comissao', FILTER_VALIDATE_FLOAT);
-
     $query = "UPDATE vendedor SET nome='$nome', endereco='$endereco', cidade='$cidade', estado='$estado', telefone='$telefone', parc_comissao='$parc_comissao' WHERE cod = '$cod'";
     $resultado = mysqli_query($conn, $query);
 
@@ -34,6 +35,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

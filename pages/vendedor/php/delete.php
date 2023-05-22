@@ -1,11 +1,10 @@
 <?php
+    include('../../../connection/connection.php');
     if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
-    include_once('../../../connection/connection.php');
 
     $cod = filter_input(INPUT_POST,'cod',FILTER_SANITIZE_NUMBER_INT);
-
     $verif = "SELECT * FROM vendas WHERE cod_vendedor ='$cod'";
     $resu = mysqli_query($conn, $verif);
 
@@ -44,10 +43,6 @@
             </div>';
             header('location: ../listagem.php');            
         }
-
-        
-
     }
-
     mysqli_close($conn);
 ?>

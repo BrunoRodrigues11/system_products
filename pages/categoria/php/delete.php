@@ -1,11 +1,10 @@
 <?php
+    include('../../../connection/connection.php');
     if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
-    include_once('../../../connection/connection.php');
 
     $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
-
     $verif = "SELECT * FROM produtos WHERE id_categoria ='$id'";
     $resu = mysqli_query($conn, $verif);
 
@@ -45,6 +44,5 @@
             header('location: ../listagem.php');            
         }
     }
-
     mysqli_close($conn);
 ?>

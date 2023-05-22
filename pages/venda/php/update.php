@@ -1,6 +1,8 @@
 <?php
-    session_start();
-    include_once('../../../connection/connection.php');
+    include('../../../connection/connection.php');
+    if (session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 
     $numero = filter_input(INPUT_POST,'numero',FILTER_SANITIZE_NUMBER_INT);
     $data = filter_input(INPUT_POST,'data',FILTER_SANITIZE_STRING);
@@ -8,7 +10,6 @@
     $cond_pagto =  filter_input(INPUT_POST,'cond_pagto',FILTER_SANITIZE_STRING);
     $cod_cliente = filter_input(INPUT_POST, 'cod_cliente', FILTER_SANITIZE_NUMBER_INT);
     $cod_vendedor =  filter_input(INPUT_POST,'cod_vendedor',FILTER_SANITIZE_NUMBER_INT);
-
     $query = "UPDATE vendas SET data='$data', prazo_entrega='$prazo_entrega', cond_pagto='$cond_pagto', cod_cliente='$cod_cliente', cod_vendedor='$cod_vendedor' WHERE numero = '$numero'";
     $resultado = mysqli_query($conn, $query);
 
@@ -33,6 +34,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

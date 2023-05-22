@@ -1,6 +1,8 @@
 <?php
-    session_start();
-    include_once('../../../connection/connection.php');
+    include('../../../connection/connection.php');
+    if (session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 
     $cod = filter_input(INPUT_POST,'cod',FILTER_SANITIZE_NUMBER_INT);
     $nome =  filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
@@ -8,7 +10,6 @@
     $qtd_estoque = filter_input(INPUT_POST, 'qtd_estoque', FILTER_SANITIZE_NUMBER_INT);
     $unidade_medida =  filter_input(INPUT_POST,'unidade_medida',FILTER_SANITIZE_STRING);
     $id_categoria =  filter_input(INPUT_POST,'id_categoria',FILTER_SANITIZE_NUMBER_INT);
-
     $query = "UPDATE produtos SET nome='$nome', preco='$preco', qtd_estoque='$qtd_estoque', unidade_medida='$unidade_medida', id_categoria='$id_categoria' WHERE cod = '$cod'";
     $resultado = mysqli_query($conn, $query);
 
@@ -33,6 +34,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

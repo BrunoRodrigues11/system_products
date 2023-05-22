@@ -1,17 +1,14 @@
 <?php
     include('../../../connection/connection.php');
-    if (session_status() !== PHP_SESSION_ACTIVE) {
+    if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
-
+    
     $data = filter_input(INPUT_POST,'data',FILTER_SANITIZE_STRING);
     $prazo_entrega = filter_input(INPUT_POST, 'prazo_entrega', FILTER_SANITIZE_STRING);
     $cond_pagto =  filter_input(INPUT_POST,'cond_pagto',FILTER_SANITIZE_STRING);
     $cod_cliente = filter_input(INPUT_POST, 'cod_cliente', FILTER_SANITIZE_NUMBER_INT);
     $cod_vendedor =  filter_input(INPUT_POST,'cod_vendedor',FILTER_SANITIZE_NUMBER_INT);
-
-    
-
     $query = "INSERT INTO vendas (data, prazo_entrega, cod_vendedor,  cond_pagto, cod_cliente) VALUES ('$data', '$prazo_entrega', '$cod_vendedor',  '$cond_pagto', '$cod_cliente')";
     $result = mysqli_query($conn, $query);
 
@@ -36,6 +33,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

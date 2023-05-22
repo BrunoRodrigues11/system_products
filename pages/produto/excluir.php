@@ -1,6 +1,8 @@
 <?php
-    session_start();
     include('../../connection/connection.php');
+    if (session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 
     $cod = filter_input(INPUT_GET,'cod',FILTER_SANITIZE_NUMBER_INT);
 
@@ -17,7 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deletar Produto</title>
     <link href="../../node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,17 +32,19 @@
     ?>
     <div class="container">
         <div class="row">
-            <h1>
-            <div class="col-md-3">
-                <button class="btn btn-outline-primary" type="button" id="btn-back">
-                    <i class="bi bi-arrow-left-circle"></i>
-                    Voltar
-                </button>                
-            </div>  
-                Deletar Produto
-            </h1>
-        </div>
-        <div class="row">
+            <div class="row pt-3 d-flex align-items-start">
+                <div class="col-md-2 btn-back">
+                    <button class="btn btn-outline-primary" type="button" id="btn-back">
+                        <i class="bi bi-arrow-left-circle"></i>
+                        Voltar
+                    </button>  
+                </div>
+                <div class="col-md-6">            
+                    <h3>
+                        Deletar Produto
+                    </h3>                
+                </div>                
+            </div>
             <div class="form-control">
                 <form action="php/delete.php" method="post">
                     <input type="hidden" name="cod" value="<?= $row['cod'] ?>" required>

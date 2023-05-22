@@ -1,6 +1,6 @@
 <?php
     include('../../../connection/connection.php');
-    if (session_status() !== PHP_SESSION_ACTIVE) {
+    if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
 
@@ -9,7 +9,6 @@
     $qtd_estoque = filter_input(INPUT_POST, 'qtd_estoque', FILTER_SANITIZE_NUMBER_INT);
     $unidade_medida =  filter_input(INPUT_POST,'unidade_medida',FILTER_SANITIZE_STRING);
     $id_categoria =  filter_input(INPUT_POST,'id_categoria',FILTER_SANITIZE_NUMBER_INT);
-
     $query = "INSERT INTO produtos (nome, unidade_medida, preco, qtd_estoque, id_categoria) VALUES ('$nome', '$unidade_medida', '$preco', '$qtd_estoque', '$id_categoria')";
     $result = mysqli_query($conn, $query);
 
@@ -34,6 +33,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

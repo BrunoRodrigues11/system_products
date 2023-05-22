@@ -1,13 +1,11 @@
 <?php
+    include('../../../connection/connection.php');
     if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
-    include_once('../../../connection/connection.php');
 
     $numero = filter_input(INPUT_POST,'numero',FILTER_SANITIZE_NUMBER_INT);
-
     $verif = "SELECT * FROM itens_vendas WHERE numero_venda ='$numero'";
-
     $resu = mysqli_query($conn, $verif);
 
     if (mysqli_affected_rows($conn)) {
@@ -45,10 +43,6 @@
             </div>';
             header('location: ../listagem.php');            
         }
-
-        
-
     }
-
     mysqli_close($conn);
 ?>

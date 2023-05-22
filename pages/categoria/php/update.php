@@ -1,11 +1,11 @@
 <?php
-    session_start();
-    include_once('../../../connection/connection.php');
+    include('../../../connection/connection.php');
+    if (session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 
     $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
     $descricao = filter_input(INPUT_POST,'descricao',FILTER_SANITIZE_STRING);
-
-
     $query = "UPDATE categoria SET descricao='$descricao' WHERE id = '$id'";
     $resultado = mysqli_query($conn, $query);
 
@@ -30,6 +30,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>

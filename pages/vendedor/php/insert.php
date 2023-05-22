@@ -1,17 +1,15 @@
 <?php
     include('../../../connection/connection.php');
-    if (session_status() !== PHP_SESSION_ACTIVE) {
+    if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
 
-    
     $nome = filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
     $endereco =  filter_input(INPUT_POST,'endereco',FILTER_SANITIZE_STRING);
     $cidade =  filter_input(INPUT_POST,'cidade',FILTER_SANITIZE_STRING);
     $estado =  filter_input(INPUT_POST,'estado',FILTER_SANITIZE_STRING);
     $telefone =  filter_input(INPUT_POST,'telefone',FILTER_SANITIZE_STRING);
     $parc_comissao = filter_input(INPUT_POST, 'parc_comissao', FILTER_VALIDATE_FLOAT);
-
     $query = "INSERT INTO vendedor (nome, endereco, cidade, estado, telefone, parc_comissao) VALUES ('$nome', '$endereco', '$cidade', '$estado', '$telefone', '$parc_comissao')";
     $result = mysqli_query($conn, $query);
 
@@ -36,6 +34,5 @@
         </div>';
         header('location: ../listagem.php');
     }
-
     mysqli_close($conn);
 ?>
