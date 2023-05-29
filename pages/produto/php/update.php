@@ -7,10 +7,11 @@
     $cod = filter_input(INPUT_POST,'cod',FILTER_SANITIZE_NUMBER_INT);
     $nome =  filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
     $preco =  filter_input(INPUT_POST,'preco',FILTER_VALIDATE_FLOAT);
-    $qtd_estoque = filter_input(INPUT_POST, 'qtd_estoque', FILTER_SANITIZE_NUMBER_INT);
+    $qtd_estoque = filter_input(INPUT_POST, 'estoque_atual', FILTER_SANITIZE_NUMBER_INT);
+    $qtd_estoque_min = filter_input(INPUT_POST, 'estoque_min', FILTER_SANITIZE_NUMBER_INT);
     $unidade_medida =  filter_input(INPUT_POST,'unidade_medida',FILTER_SANITIZE_STRING);
     $id_categoria =  filter_input(INPUT_POST,'id_categoria',FILTER_SANITIZE_NUMBER_INT);
-    $query = "UPDATE produtos SET nome='$nome', preco='$preco', qtd_estoque='$qtd_estoque', unidade_medida='$unidade_medida', id_categoria='$id_categoria' WHERE cod = '$cod'";
+    $query = "UPDATE produtos SET nome='$nome', preco='$preco', qtd_estoque='$qtd_estoque', qtd_estoque_min='$qtd_estoque_min', unidade_medida='$unidade_medida', id_categoria='$id_categoria' WHERE cod = '$cod'";
     $resultado = mysqli_query($conn, $query);
 
     if (mysqli_affected_rows($conn)) {

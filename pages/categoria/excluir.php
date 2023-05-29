@@ -5,7 +5,6 @@
     }
 
     $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
-
     $query = "SELECT * FROM categoria WHERE id = '$id'";
     $resultado = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($resultado);

@@ -69,7 +69,13 @@
                                 <td><?= $reg["nome_vendedor"] ?></td>
                                 <!-- <td><a class="btn btn-warning" href="./editar.php?numero=<?= $reg['numero']?>">Editar</a>
                                 </td> -->
-                                <td><a class="btn btn-danger" href="./excluir.php?numero=<?= $reg['numero']?>">Excluir</a>
+                                <td>
+                                    <a class="btn btn-primary" href="./excluir.php?numero=<?= $reg['numero']?>">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="./excluir.php?numero=<?= $reg['numero']?>">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

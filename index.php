@@ -11,6 +11,11 @@
     $resultadoQtdeEstoqueZ = mysqli_query($conn, $queryQtdeEstoqueZ);
     $rowQtdeEstoqueZ = mysqli_fetch_array($resultadoQtdeEstoqueZ);
 
+    // Retorna a quantidade de produtos com estoque minimo
+    $queryQtdeEstoqueM = "SELECT * FROM qtde_estoque_min";
+    $resultadoQtdeEstoqueM = mysqli_query($conn, $queryQtdeEstoqueM);
+    $rowQtdeEstoqueM = mysqli_fetch_array($resultadoQtdeEstoqueM);
+
     // Retorna a quantidade de estoque total 
     $queryQtdeEstoqueT = "SELECT * FROM qtde_estoque_total";
     $resultadoQtdeEstoqueT = mysqli_query($conn, $queryQtdeEstoqueT);
@@ -90,7 +95,7 @@
                               Produtos com estoque mínimo
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                              <?= $rowQtdeProd['qtde_prod'] ?>
+                              <?= $rowQtdeEstoqueM['qtde'] ?>
                             </div>
                         </div>
                     </div>

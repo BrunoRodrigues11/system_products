@@ -49,7 +49,7 @@
                             <tr>
                                 <th>Código</th>
                                 <th>Nome</th>
-                                <th colspan='2'>Ações</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <?php
@@ -61,9 +61,13 @@
                             <tr>
                                 <td><?= $reg["id"] ?></td>
                                 <td><?= $reg["descricao"] ?></td>
-                                <td><a class="btn btn-warning" href="./editar.php?id=<?= $reg['id']?>">Editar</a>
-                                </td>
-                                <td><a class="btn btn-danger" href="./excluir.php?id=<?= $reg['id']?>">Excluir</a>
+                                <td>
+                                    <a class="btn btn-primary" href="./editar.php?id=<?= $reg['id']?>">
+                                        <i class="bi bi-pencil-fill text-white"></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="./excluir.php?id=<?= $reg['id']?>">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

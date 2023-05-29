@@ -5,7 +5,6 @@
     }
 
     $codigo = filter_input(INPUT_GET,'codigo',FILTER_SANITIZE_NUMBER_INT);
-
     $query = "SELECT * FROM cliente WHERE codigo = '$codigo'";
     $resultado = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($resultado);
@@ -25,27 +24,24 @@
 
 <body>
     <?php
-        if(isset($_SESSION['msg'])){
-            echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-        }
+        include("../../components/navbar.php");
     ?>
     <div class="container">
-        <div class="row">
-            <div class="row pt-3 d-flex align-items-start">
-                <div class="col-md-2 btn-back">
-                    <button class="btn btn-outline-primary" type="button" id="btn-back">
-                        <i class="bi bi-arrow-left-circle"></i>
-                        Voltar
-                    </button>  
-                </div>
-                <div class="col-md-6">            
-                    <h3>
-                        Deletar Cliente
-                    </h3>                
-                </div>                
-            </div>
+        <div class="row pt-3">
             <div class="form-control">
+                <div class="row d-flex align-items-start">
+                    <div class="col-md-2 btn-back">
+                        <button class="btn btn-outline-primary" type="button" id="btn-back">
+                            <i class="bi bi-arrow-left-circle"></i>
+                            Voltar
+                        </button>  
+                    </div>
+                    <div class="col-md-6">            
+                        <h3>
+                            Deletar Cliente
+                        </h3>                
+                    </div>                
+                </div>  
                 <form action="php/delete.php" method="post">
                     <input type="hidden" name="codigo" value="<?= $row['codigo'] ?>" required>
                     <div class="mb-3">

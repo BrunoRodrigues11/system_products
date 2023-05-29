@@ -60,8 +60,15 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label for="" class="form-label">Quantidade:</label>
-                            <input type="number" name="qtd_estoque" class="form-control" maxlength="100"
+                            <label for="" class="form-label">Estoque Atual:</label>
+                            <input type="number" name="estoque_atual" class="form-control" maxlength="100"
+                                value="<?= $row['qtd_estoque'] ?>" required>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label">Estoque Mínimo:</label>
+                            <input type="number" name="estoque_min" class="form-control" maxlength="100"
                                 value="<?= $row['qtd_estoque'] ?>" required>
                         </div>                        
                     </div>

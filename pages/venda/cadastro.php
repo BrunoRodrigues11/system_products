@@ -3,6 +3,10 @@
     if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
+
+    $queryItensVenda = "SELECT * FROM cont_prod";
+    $resultadoItensVenda = mysqli_query($conn, $queryItensVenda);
+    $rowQItensVenda = mysqli_fetch_array($resultadoItensVenda);
 ?>
 
 <!DOCTYPE html>
@@ -40,48 +44,34 @@
                 </div> 
                 <form action="php/insert.php" method="post">
                     <div class="row">
-                        <div class="col">
-                            <label for="" class="form-label">Data</label>
+                        <div class="col-md-6">
+                            <label for="" class="form-label">Data da Venda</label>
                             <input type="date" name="data" class="form-control" maxlength="100" required>
-                        </div>                        
-                    </div>
-                    <div class="row">
-                        <div class="col">
+                        </div>      
+                        <div class="col-md-6">
                             <label for="" class="form-label">Prazo de Entrega</label>
                             <input type="date" name="prazo_entrega" class="form-control" maxlength="100" required>
-                        </div>                        
+                        </div>                   
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <label for="" class="form-label">Metodo de pagamento</label>
-                            <select name='cond_pagto' class="form-select">
-                                <option value="pix">Pix</option>
-                                <option value="dinheiro">Dinheiro</option>
-                                <option value="debito">Cartão de debito</option>
-                                <option value="credito">Cartão de credito</option>
-                            </select>
-                        </div>                        
-                    </div>
-                    <div class="row">
-                        <div class="col">
+                        <div class="col-md-6">
+                            <label for="" class="form-label">Cliente</label>
                             <?php 
                                 $queryCliente = "SELECT * FROM cliente";
                                 $resultadoCliente = mysqli_query($conn, $queryCliente);
                                 if (mysqli_num_rows($resultadoCliente) > 0) { ?>
-                                    <label for="" class="form-label">Cliente</label>
-                                    <select name='cod_cliente' class="form-select">
+                                <input class="form-control" list="datalistOptions" id="estado" name="estado" placeholder="Selecione o Cliente">
+                                    <datalist id="datalistOptions">
                                         <?php foreach ($resultadoCliente as $rowCliente) { ?>
                                         <option value="<?= $rowCliente['codigo'] ?>"> <?= $rowCliente['nome'] ?></option>
                             <?php } ?>
-                                    </select>
+                                    </datalist>
                             <?php } else { ?>
                                     <select name='cod_cliente' class="form-select" hidden required></select>
                                     <label for="" class="form-label">Nenhum cliente encontrado.</label>
-                            <?php } ?>
-                        </div>                        
-                    </div>
-                    <div class="row">
-                        <div class="col">
+                            <?php } ?>                    
+                        </div>  
+                        <div class="col-md-6">
                             <?php 
                                 $queryVendedor = "SELECT * FROM vendedor";
                                 $resultadoVendedor = mysqli_query($conn, $queryVendedor);
@@ -96,18 +86,27 @@
                                     <select name='cod_vendedor' class="form-select" hidden required></select>
                                     <label for="" class="form-label">Nenhum vendedor encontrado.</label>
                             <?php } ?>
+                        </div>                     
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="" class="form-label">Metodo de pagamento</label>
+                            <select name='cond_pagto' class="form-select">
+                                <option value="pix">Pix</option>
+                                <option value="dinheiro">Dinheiro</option>
+                                <option value="debito">Cartão de debito</option>
+                                <option value="credito">Cartão de credito</option>
+                            </select>
                         </div>                        
                     </div>
                     <br>
                     <div class="row">
                         <div class="col">
-                            <input type="submit" value="Enviar" class="btn btn-success">
-                            <input type="reset" value="Limpar" class="btn btn-danger">
+                            <input type="submit" value="Abrir Venda" class="btn btn-success">
                         </div>                        
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 

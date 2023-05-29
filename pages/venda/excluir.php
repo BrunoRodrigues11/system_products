@@ -5,7 +5,6 @@
     }
 
     $numero = filter_input(INPUT_GET,'numero',FILTER_SANITIZE_NUMBER_INT);
-
     $query = "SELECT v.*, c.nome AS nome_cliente, vd.nome AS nome_vendedor FROM vendas v INNER JOIN cliente c ON v.cod_cliente = c.codigo INNER JOIN vendedor vd ON v.cod_vendedor = vd.cod WHERE numero = '$numero'";
     $resultado = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($resultado);
@@ -25,54 +24,105 @@
 
 <body>
     <?php
-        if(isset($_SESSION['msg'])){
-            echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-        }
+        include("../../components/navbar.php");
     ?>
     <div class="container">
-        <div class="row">
-            <div class="row pt-3 d-flex align-items-start">
-                <div class="col-md-2 btn-back">
-                    <button class="btn btn-outline-primary" type="button" id="btn-back">
-                        <i class="bi bi-arrow-left-circle"></i>
-                        Voltar
-                    </button>  
-                </div>
-                <div class="col-md-6">            
-                    <h3>
-                        Deletar Venda
-                    </h3>                
-                </div>                
-            </div>
+        <div class="row pt-3">
             <div class="form-control">
+                <div class="row d-flex align-items-start">
+                    <div class="col-md-2 btn-back">
+                        <button class="btn btn-outline-primary" type="button" id="btn-back">
+                            <i class="bi bi-arrow-left-circle"></i>
+                            Voltar
+                        </button>  
+                    </div>
+                    <div class="col-md-6">            
+                        <h3>
+                            Deletar Venda
+                        </h3>                
+                    </div>                
+                </div>  
                 <form action="php/delete.php" method="post">
-                    <input type="hidden" name="numero" value="<?= $row['numero'] ?>" required>
-                    <div class="mb-3">
-                        <label for="" class="form-label"><b>Codigo:</b> <?= $row['numero'] ?></label>
+                    <div class="row">
+                        <div class="col">
+                            <input type="hidden" name="numero" value="<?= $row['numero'] ?>" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label"><b>Data:</b> <?= $row['data'] ?></label>
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label"><b>Codigo:</b> <?= $row['numero'] ?></label>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label"><b>Prazo de entrega:</b> <?= $row['prazo_entrega'] ?></label>
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label"><b>Data:</b> <?= $row['data'] ?></label>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label"><b>Metodo de pagamento:</b> <?= $row['cond_pagto'] ?></label>
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label"><b>Prazo de entrega:</b> <?= $row['prazo_entrega'] ?></label>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label"><b>Cliente:</b> <?= $row['nome_cliente'] ?></label>
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label"><b>Metodo de pagamento:</b> <?= $row['cond_pagto'] ?></label>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label"><b>Vendedor:</b> <?= $row['nome_vendedor'] ?></label>
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label"><b>Cliente:</b> <?= $row['nome_cliente'] ?></label>
+                        </div>
                     </div>
-
-                    <div class=" md-3">
-                        <input type="submit" value="Deletar" class="btn btn-danger">
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label"><b>Vendedor:</b> <?= $row['nome_vendedor'] ?></label>
+                        </div>
                     </div>
+                    <br>
+                    <div class="row d-flex align-items-start">
+                        <div class="col-md-6">            
+                            <h3>
+                                Itens da Venda - Nº <?= $row['numero'] ?>
+                            </h3>                
+                        </div>                
+                    </div> 
+                    <table class="table table-responsive table-hover text-bg-light align-middle">
+                        <thead>
+                            <tr>
+                                <th>Item</th>                                
+                                <th>Código</th>
+                                <th>Produto</th>
+                                <th>Unidade Medida</th>
+                                <th>Preço</th>
+                                <th>Qtde</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <?php
+                            $sql = "SELECT * FROM list_itens_venda WHERE numero_venda = $numero";
+                            $resu = mysqli_query($conn,$sql) or die(mysqli_connect_error());
+                            if (mysqli_num_rows($resu) > 0) {
+                                while ($reg = mysqli_fetch_array($resu)){
+                                ?>
+                                <tbody>
+                                    <tr>
+                                        <td><?= $reg["num_item"] ?></td>                                
+                                        <td><?= $reg["cod"] ?></td>
+                                        <td><?= $reg["nome"] ?></td>
+                                        <td><?= $reg["unidade_medida"] ?></td>
+                                        <td><?= $reg["preco"] ?></td>
+                                        <td><?= $reg["quant_vendida"] ?></td>
+                                        <td><?= $reg["total"] ?></td>
+                                    </tr>
+                        <?php }} ?>
+                    </table>   
+                    <div class="row">
+                        <div class="col">
+                            <input type="submit" value="Deletar" class="btn btn-danger">
+                        </div>
+                    </div>                    
                 </form>
             </div>
-
         </div>
     </div>
 

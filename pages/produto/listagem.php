@@ -69,9 +69,13 @@
                                 <td><?= $reg["qtd_estoque"] ?></td>
                                 <td><?= $reg["unidade_medida"] ?></td>
                                 <td><?= $reg["nome_categoria"] ?></td>
-                                <td><a class="btn btn-warning" href="./editar.php?cod=<?= $reg['cod']?>">Editar</a>
-                                </td>
-                                <td><a class="btn btn-danger" href="./excluir.php?cod=<?= $reg['cod']?>">Excluir</a>
+                                <td>
+                                    <a class="btn btn-primary" href="./editar.php?cod=<?= $reg['cod']?>">
+                                        <i class="bi bi-pencil-fill text-white"></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="./excluir.php?cod=<?= $reg['cod']?>">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

@@ -67,9 +67,13 @@
                                 <td><?= $reg["nome"] ?></td>
                                 <td><?= $reg["telefone"] ?></td>
                                 <td><?= $reg["email"] ?></td>
-                                <td><a class="btn btn-warning" href="./editar.php?codigo=<?= $reg['codigo']?>">Editar</a>
-                                </td>
-                                <td><a class="btn btn-danger" href="./excluir.php?codigo=<?= $reg['codigo']?>">Excluir</a>
+                                <td>
+                                    <a class="btn btn-primary" href="./editar.php?codigo=<?= $reg['codigo']?>">
+                                        <i class="bi bi-pencil-fill text-white"></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="./excluir.php?codigo=<?= $reg['codigo']?>">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

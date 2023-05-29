@@ -27,7 +27,7 @@
         include("../../components/navbar.php");
     ?>
     <div class="container">
-        <div class="row">
+        <div class="row pt-3">
             <div class="form-control">
                 <div class="row d-flex align-items-start">
                     <div class="col-md-2 btn-back">

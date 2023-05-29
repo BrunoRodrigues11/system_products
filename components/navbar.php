@@ -29,11 +29,10 @@
               Consultas
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../pages/categoria/listagem.php">Categorias</a></li>
-              <li><a class="dropdown-item" href="../../pages/vendedor/listagem.php">Vendedores</a></li>
-              <li><a class="dropdown-item" href="../../pages/cliente/listagem.php">Clientes</a></li>
-              <li><a class="dropdown-item" href="../../pages/venda/listagem.php">Vendas</a></li>
-              <li><a class="dropdown-item" href="../../pages/produto/listagem.php">Produtos</a></li>
+              <li><a class="dropdown-item" href="../../pages/vendedor/consulta.php">Vendedores</a></li>
+              <li><a class="dropdown-item" href="../../pages/cliente/consulta.php">Clientes</a></li>
+              <li><a class="dropdown-item" href="../../pages/venda/consulta.php">Vendas</a></li>
+              <li><a class="dropdown-item" href="../../pages/produto/consulta.php">Produtos</a></li>
             </ul>
           </div>
           <div class="dropdown">

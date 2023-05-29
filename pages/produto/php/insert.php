@@ -6,10 +6,11 @@
 
     $nome =  filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
     $preco =  filter_input(INPUT_POST,'preco',FILTER_VALIDATE_FLOAT);
-    $qtd_estoque = filter_input(INPUT_POST, 'qtd_estoque', FILTER_SANITIZE_NUMBER_INT);
+    $qtd_estoque = filter_input(INPUT_POST, 'estoque_atual', FILTER_SANITIZE_NUMBER_INT);
+    $qtd_estoque_min = filter_input(INPUT_POST, 'estoque_min', FILTER_SANITIZE_NUMBER_INT);
     $unidade_medida =  filter_input(INPUT_POST,'unidade_medida',FILTER_SANITIZE_STRING);
     $id_categoria =  filter_input(INPUT_POST,'id_categoria',FILTER_SANITIZE_NUMBER_INT);
-    $query = "INSERT INTO produtos (nome, unidade_medida, preco, qtd_estoque, id_categoria) VALUES ('$nome', '$unidade_medida', '$preco', '$qtd_estoque', '$id_categoria')";
+    $query = "INSERT INTO produtos (nome, unidade_medida, preco, qtd_estoque, qtd_estoque_min, id_categoria) VALUES ('$nome', '$unidade_medida', '$preco', '$qtd_estoque', '$qtd_estoque_min', '$id_categoria')";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_insert_id($conn)) {
