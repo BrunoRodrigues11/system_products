@@ -9,8 +9,29 @@
     $cond_pagto =  filter_input(INPUT_POST,'cond_pagto',FILTER_SANITIZE_STRING);
     $cod_cliente = filter_input(INPUT_POST, 'cod_cliente', FILTER_SANITIZE_NUMBER_INT);
     $cod_vendedor =  filter_input(INPUT_POST,'cod_vendedor',FILTER_SANITIZE_NUMBER_INT);
-    $query = "INSERT INTO vendas (data, prazo_entrega, cod_vendedor,  cond_pagto, cod_cliente) VALUES ('$data', '$prazo_entrega', '$cod_vendedor',  '$cond_pagto', '$cod_cliente')";
+    $query = "INSERT INTO vendas (data, prazo_entrega, cod_vendedor,  cond_pagto, cod_cliente) 
+                    VALUES ('$data', '$prazo_entrega', '$cod_vendedor',  '$cond_pagto', '$cod_cliente')";
     $result = mysqli_query($conn, $query);
+
+    $queryLastV = "SELECT * FROM vendas ORDER BY numero DESC LIMIT 1;";
+    $resultLastV = mysqli_query($conn, $queryLastV);
+    $rowLastV = mysqli_fetch_array($resultLastV);
+
+    $numV = $rowLastV['numero'];
+
+    foreach ($_SESSION['produtos'] as $index => $produto) {
+        $prod = $produto['produto']; 
+        $descri = $produto['descricao'];  
+        $unid = $produto['unid']; 
+        $vlrUnit = $produto['vlrUnit'];     
+        $qtde = $produto['qtde'];  
+        $subtotal = $produto['subtotal']; 
+
+        $queryIV = "INSERT INTO itens_vendas (cod_produto, numero_venda, quant_vendida, subtotal) 
+                        VALUES ('$prod', $numV, '$qtde',  '$subtotal')";
+        $resultIV = mysqli_query($conn, $queryIV);                           
+    }
+    unset($_SESSION['produtos']);
 
     if (mysqli_insert_id($conn)) {
         $_SESSION['msg'] = '

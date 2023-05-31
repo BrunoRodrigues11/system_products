@@ -4,9 +4,7 @@
         session_start();
     }
 
-    $queryItensVenda = "SELECT * FROM cont_prod";
-    $resultadoItensVenda = mysqli_query($conn, $queryItensVenda);
-    $rowQItensVenda = mysqli_fetch_array($resultadoItensVenda);
+    print_r($_SESSION['produtos']);
 ?>
 
 <!DOCTYPE html>
@@ -55,21 +53,20 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="" class="form-label">Cliente</label>
                             <?php 
                                 $queryCliente = "SELECT * FROM cliente";
                                 $resultadoCliente = mysqli_query($conn, $queryCliente);
                                 if (mysqli_num_rows($resultadoCliente) > 0) { ?>
-                                <input class="form-control" list="datalistOptions" id="estado" name="estado" placeholder="Selecione o Cliente">
-                                    <datalist id="datalistOptions">
+                                    <label for="" class="form-label">Cliente</label>
+                                    <select name='cod_cliente' class="form-select">
                                         <?php foreach ($resultadoCliente as $rowCliente) { ?>
                                         <option value="<?= $rowCliente['codigo'] ?>"> <?= $rowCliente['nome'] ?></option>
                             <?php } ?>
-                                    </datalist>
+                                    </select>
                             <?php } else { ?>
                                     <select name='cod_cliente' class="form-select" hidden required></select>
                                     <label for="" class="form-label">Nenhum cliente encontrado.</label>
-                            <?php } ?>                    
+                            <?php } ?>                  
                         </div>  
                         <div class="col-md-6">
                             <?php 
@@ -100,11 +97,63 @@
                         </div>                        
                     </div>
                     <br>
+                    <!-- ITENS VENDA -->
+                    <div class="row">
+                        <div class="col-md-6">            
+                            <h5>
+                                Itens da Venda
+                            </h5>                
+                        </div>   
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?php 
+                                $queryProduto = "SELECT * FROM produtos";
+                                $resultadoProduto = mysqli_query($conn, $queryProduto);
+                                if (mysqli_num_rows($resultadoProduto) > 0) { ?>
+                                    <label for="" class="form-label">Produto</label>
+                                    <select name='cod_produto' class="form-select" id="inputProduto">
+                                        <?php foreach ($resultadoProduto as $rowProduto) { ?>
+                                        <option value="<?= $rowProduto['cod'] ?>"> <?= $rowProduto['cod'] ?> - <?= $rowProduto['nome'] ?></option>
+                            <?php } ?>
+                                    </select>
+                            <?php } else { ?>
+                                    <select name='cod_produto' class="form-select" hidden required></select>
+                                    <label for="" class="form-label">Nenhum produto encontrado.</label>
+                            <?php } ?>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="" class="form-label">Quantidade</label>
+                            <input type="number" id="inputQtde" name="quantidade" class="form-control" maxlength="100" required>
+                        </div>  
+                        <div class="col-md-2">
+                            <label for="" class="form-label text-white">aa</label><br>
+                            <input type="button" value="Adicionar" class="btn btn-success" id="buttonAdd">
+                        </div>  
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col">
-                            <input type="submit" value="Abrir Venda" class="btn btn-success">
-                        </div>                        
+                            <table id="resultTable" style="display:none"  class="table table-responsive table-hover text-bg-light align-middle">
+                                <thead><tr>
+                                    <th>Item</th>
+                                    <th>Código</th>
+                                    <th>Produto</th>
+                                    <th>Unid.</th>
+                                    <th>Vr. Unitário</th>
+                                    <th>Quantidade</th>
+                                    <th>Sub Total</th>
+                                </tr></thead>
+                                <tbody></tbody>
+                            </table>                               
+                        </div>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="submit" value="Salvar" class="btn btn-success">
+                        </div>                        
+                    </div>  
                 </form>
             </div>
         </div>
@@ -113,6 +162,47 @@
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/main.js"></script>
+    <script> 
+        $(document).ready(() => {
+            $("#buttonAdd").click(() => {
+                var inputValueP = $("#inputProduto").val();
+                var inputValueQ = $("#inputQtde").val();
+                $.ajax({
+                    url: "./php/add.php",
+                    type: "POST",
+                    data: {inputP: inputValueP, inputQ: inputValueQ},
+                    success: (res) => {
+                        $("#resultTable tbody").empty();
+                        $("#resultTable tbody").append(res)
+                        $("#resultTable").css("display" , "table")
+                    },
+                    erro: (xhr, status, error) => {
+                        console.log("Error Ajax: ", error)
+                    }
+                });
+
+                $("#inputProduto").val("");
+                $("#inputQtde").val("");
+            })
+        });
+
+        // Função para remover um produto usando AJAX
+        function removerProduto(index) {
+            $.ajax({
+                url: "./php/remove.php",
+                method: "POST",
+                data: { index: index },
+                success: (res) => {
+                    $("#resultTable tbody").empty();
+                    $("#resultTable tbody").append(res)
+                    $("#resultTable").css("display" , "table")
+                },
+                erro: (xhr, status, error) => {
+                    console.log("Error Ajax: ", error)
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

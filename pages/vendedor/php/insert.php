@@ -13,6 +13,7 @@
     $query = "INSERT INTO vendedor (nome, endereco, cidade, estado, telefone, parc_comissao) VALUES ('$nome', '$endereco', '$cidade', '$estado', '$telefone', '$parc_comissao')";
     $result = mysqli_query($conn, $query);
 
+
     if (mysqli_insert_id($conn)) {
         $_SESSION['msg'] = '
         <div class="alert alert-success alert-dismissible fade show" id="alert">

@@ -44,21 +44,22 @@
                             </div>
                             </div>  
                         </div>
-                    </div>                           
+                    </div>   
+                    <table id="resultTable" style="display:none"  class="table table-responsive table-hover text-bg-light align-middle">
+                        <thead><tr>
+                            <th>Codigo</th>
+                            <th>Nome</th>
+                            <th>Endereço</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Telefone</th>
+                            <th>Comissão</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>                                            
                 </div>
             </div>
-            <table id="resultTable" style="display:none"  class="table table-responsive table-hover text-bg-light align-middle">
-                <thead><tr>
-                    <th>Codigo</th>
-                    <th>Nome</th>
-                    <th>Endereço</th>
-                    <th>Cidade</th>
-                    <th>Estado</th>
-                    <th>Telefone</th>
-                    <th>Comissão</th>
-                </tr></thead>
-                <tbody></tbody>
-            </table>
+
         </div>
 
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>

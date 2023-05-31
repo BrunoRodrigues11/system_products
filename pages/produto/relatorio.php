@@ -4,17 +4,20 @@
         session_start();
     }
 
-    $query = "SELECT * FROM produtos";
-    $result = mysqli_query($conn, $query);
+    $sql = 'SELECT * FROM list_prod_cat';
+    $resultado = mysqli_query($conn, $sql) or die("Erro ao retornar dados");
     $row = "";
-
-    while ($dados = mysqli_fetch_array($result)){
-        $row ="<tr><td>".$dados['nome']."</td><td>".$dados['id_categoria']."</td><td>";
+    while ($registro = mysqli_fetch_array($resultado)){
+        $row ="<tr>
+                    <td>".$registro['produto']."</td>
+                    <td>".$registro['categoria']."</td>
+                <tr>";
+        // echo "'$row'<br>";
     }
 
+    require_once("../../dompdf/autoload.inc.php");
     use Dompdf\Dompdf;
 
-    require_once("../../dompdf/autoload.inc.php");
     $dompdf = new DOMPDF();
 
     $dompdf->loadHtml('
@@ -24,7 +27,8 @@
                 <tr>
                     <td>Produto</td>
                     <td>Categoria</td>
-                </tr>'.$row.'
+                </tr>
+                '.$row.'           
             </table>            
     ');
 

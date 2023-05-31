@@ -9,7 +9,7 @@
     if (empty($pesq_1)){
         $sql = "SELECT * FROM vendedor ORDER BY cod";   
     }elseif (!empty($pesq_1)){
-        $sql = "SELECT * FROM vendedor WHERE nome like '%$pesq_1' ORDER BY nome";
+        $sql = "SELECT * FROM vendedor WHERE nome LIKE '%$pesq_1' ORDER BY nome";
         echo $sql;
     }
     $resultado = mysqli_query($conn,$sql) or die("Erro ao retornar dados");
