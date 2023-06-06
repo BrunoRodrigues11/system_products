@@ -49,6 +49,7 @@
     <link href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">  
     <link href="css/style.css" rel="stylesheet">  
+    <link rel="icon" type="image/x-icon" href="./components/assets/favicon.ico">
 </head>
 <body>
     <?php include('components/navbar_index.php') ?>
@@ -128,7 +129,7 @@
             </div>
             <div class="card-body">
               <div class="chart-area">
-                
+                <img src="./components/assets/logo.png" alt="" class="img-logo">
               </div>
             </div>
           </div>

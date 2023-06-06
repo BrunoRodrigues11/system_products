@@ -2,13 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg text-bg-dark ">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="#"><img width="110x" src="assets/logo.png" alt=""></a> -->
+      <a class="navbar-brand" href="index.php">
+        <img src="./components/assets/logo2.png" alt="" class="img-logo">  
+      </a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link text-bg-dark" href="index.php">Home</a></li>
@@ -41,8 +41,8 @@
               Relatórios
             </button>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="pages/">Pedidos</a></li>
-              <li><a class="dropdown-item" href="pages/">Produtos</a></li>
+              <li><a class="dropdown-item" href="pages/venda/relatorio">Pedidos</a></li>
+              <li><a class="dropdown-item" href="pages/produto/relatorio.php">Produtos</a></li>
             </ul>
           </div>
         </ul>        

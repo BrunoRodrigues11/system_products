@@ -16,7 +16,8 @@
     <link href="../../node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">  
-</head>
+    <link rel="icon" type="image/x-icon" href="../../components/assets/favicon.ico">
+</head> 
 
 <body>
     <?php

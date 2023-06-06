@@ -28,8 +28,6 @@
         'subtotal' => $subtotal,
     ];
 
-    // print_r($_SESSION['produtos']) ;
-
     // Verifica se existem produtos na sessão
     if (isset($_SESSION['produtos']) && count($_SESSION['produtos']) > 0) {
 
@@ -46,10 +44,8 @@
             echo "<td>{$produto['qtde']}</td>";    
             echo "<td>R$ {$produto['subtotal']}</td>";                                 
             echo "<td>";
-            echo "<form method='post' action=''>";
             echo "<input type='hidden' name='index' value='$index'>";
-            echo "<button onclick=\"removerProduto($index)\" class='btn btn-danger'>Remover</button>";
-            echo "</form>";
+            echo "<button type='button' class='btn btn-danger' onclick=\"removerProduto($index)\">Remover</button>";
             echo "</td>";
             echo "</tr>";
 
@@ -63,7 +59,7 @@
         echo "</tr>";
     } else {
         echo "<p>Nenhum produto adicionado.</p>";
-    }
+    };
 
     mysqli_close($conn);
 ?>

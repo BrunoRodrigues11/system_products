@@ -1,9 +1,6 @@
 <?php
     session_start();
-
     $index = $_POST['index'];
-
-    print_r($_SESSION['produtos']);
 
     if (isset($_SESSION['produtos'][$index])) {
         unset($_SESSION['produtos'][$index]);
@@ -22,12 +19,12 @@
             echo "<td>{$produto['produto']}</td>";
             echo "<td>{$produto['descricao']}</td>"; 
             echo "<td>{$produto['unid']}</td>";  
-            echo "<td>R$ {$produto['vlrUnir']}</td>";   
+            echo "<td>R$ {$produto['vlrUnit']}</td>";   
             echo "<td>{$produto['qtde']}</td>";    
             echo "<td>R$ {$produto['subtotal']}</td>";                                 
             echo "<td>";
-            echo "<input type='hidden' name='remove' value='$index'>";
-            echo "<button onclick=\"removerProduto($index)\" class='btn btn-danger'>Remover ABC</button>";
+            echo "<input type='hidden' name='index' value='$index'>";
+            echo "<button type='button' class='btn btn-danger' onclick=\"removerProduto($index)\">Remover</button>";
             echo "</td>";
             echo "</tr>";
 
@@ -38,10 +35,8 @@
         echo "<td>Total:</td>";
         echo "<td>R$ $total</td>";
         echo "<td></td>";
-        echo "</tr>";
+        echo "</tr>";           
     } else {
         echo "<p>Nenhum produto adicionado.</p>";
     }
-
-    mysqli_close($conn);
 ?>

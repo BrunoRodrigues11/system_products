@@ -3,8 +3,6 @@
     if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
-
-    print_r($_SESSION['produtos']);
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +16,7 @@
     <link href="../../node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../../components/assets/favicon.ico">
 </head>
 
 <body>
@@ -124,7 +123,7 @@
                         </div> 
                         <div class="col-md-4">
                             <label for="" class="form-label">Quantidade</label>
-                            <input type="number" id="inputQtde" name="quantidade" class="form-control" maxlength="100" required>
+                            <input type="number" id="inputQtde" name="quantidade" class="form-control" maxlength="100">
                         </div>  
                         <div class="col-md-2">
                             <label for="" class="form-label text-white">aa</label><br>
@@ -150,9 +149,10 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-6">
                             <input type="submit" value="Salvar" class="btn btn-success">
-                        </div>                        
+                            <input type="button" value="Cancelar" class="btn btn-danger">
+                        </div>                      
                     </div>  
                 </form>
             </div>
@@ -183,11 +183,12 @@
 
                 $("#inputProduto").val("");
                 $("#inputQtde").val("");
-            })
+            })         
         });
 
-        // Função para remover um produto usando AJAX
+        //Função para remover um produto usando AJAX
         function removerProduto(index) {
+            console.log("CHAMOU A FUNÇÂO");
             $.ajax({
                 url: "./php/remove.php",
                 method: "POST",

@@ -3,21 +3,24 @@
     if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
+    
+    $sql = "SELECT * FROM list_prod_cat WHERE categoria LIKE '%Frutas%'";
+    $resultado = mysqli_query($conn,$sql) or die("Erro ao retornar dados");
+    
+    $row ="";
 
-    $sql = 'SELECT * FROM list_prod_cat';
-    $resultado = mysqli_query($conn, $sql) or die("Erro ao retornar dados");
-    $row = "";
     while ($registro = mysqli_fetch_array($resultado)){
-        $row ="<tr>
-                    <td>".$registro['produto']."</td>
-                    <td>".$registro['categoria']."</td>
-                <tr>";
+        $categoria = $registro['categoria'];
+        $produto = $registro['produto'];
+
+        $row.="<tr><td>".$produto."</td><td>".$categoria."</td><tr><br>";
         // echo "'$row'<br>";
     }
 
-    require_once("../../dompdf/autoload.inc.php");
     use Dompdf\Dompdf;
 
+    require_once("../../dompdf/autoload.inc.php");
+    
     $dompdf = new DOMPDF();
 
     $dompdf->loadHtml('
@@ -27,16 +30,14 @@
                 <tr>
                     <td>Produto</td>
                     <td>Categoria</td>
-                </tr>
-                '.$row.'           
-            </table>            
-    ');
+                </tr>'.$row.'</table>');
 
     $dompdf->render();
+    
     $dompdf->stream(
         "Relatorio_produtos.pdf",
         array(
             "Attachment" => false
         )
-        );
+    );
 ?>
