@@ -29,6 +29,7 @@
             echo "</tr>";
 
             $total += $produto['subtotal'];
+            $_SESSION['total_venda'] = $total;
         }
 
         echo "<tr class='total'>";

@@ -40,35 +40,54 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-search"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="basic-addon1">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Filtro
-                                </button>
-                                <ul class="dropdown-menu">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Nome
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                    <label class="form-check-label" for="exampleRadios2">
-                                        CPF
-                                    </label>
-                                </div>
-                                </ul>
-                            </div>
+                            <input id="inputText" type="text" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="basic-addon1">
+                            <button id="buttonSearch" class="btn btn-primary" type="button" aria-expanded="false">
+                                Pesquisar
+                            </button>
                         </div>  
                     </div>
-                </div>                           
+                </div>  
+                <table id="resultTable" style="display:none"  class="table table-responsive table-hover text-bg-light align-middle">
+                    <thead><tr>
+                        <th>Codigo</th>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Telefone</th>   
+                        <th>Limite Crédito</th>                     
+                        <th>Cidade</th>
+                        <th>Email</th>
+                        <th>CPF</th>
+                        <th>Estado</th>
+                    </tr></thead>
+                    <tbody></tbody>
+                </table>                           
             </div>
         </div>
     </div>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/utils/notificação.js"></script>
+    <script> 
+        $(document).ready(() => {
+            $("#buttonSearch").click(() => {
+                var inputValue = $("#inputText").val();
+
+                $.ajax({
+                    url: "./php/consulta.php",
+                    type: "POST",
+                    data: {input: inputValue},
+                    success: (res) => {
+                        $("#resultTable tbody").empty();
+                        $("#resultTable tbody").append(res)
+                        $("#resultTable").css("display" , "table")
+                    },
+                    erro: (xhr, status, error) => {
+                        console.log("Error Ajax: ", error)
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

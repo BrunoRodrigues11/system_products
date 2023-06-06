@@ -48,32 +48,33 @@
                     <table class="table table-responsive table-hover text-bg-light align-middle">
                         <thead>
                             <tr>
-                                <th>Código</th>
+                                <th>Número</th>
                                 <th>Data</th>
-                                <th>Prazo Entrega</th>
+                                <th>Prazo entrega</th>
+                                <th>Cond. Pagto</th>   
+                                <th>Cod. Cliente</th>                     
                                 <th>Cliente</th>
+                                <th>Cod. Vendedor</th>
                                 <th>Vendedor</th>
                                 <th colspan='2'>Ações</th>
                             </tr>
                         </thead>
                         <?php
-                            $sql = "SELECT v.*, c.nome AS nome_cliente, vd.nome AS nome_vendedor FROM vendas v INNER JOIN cliente c ON v.cod_cliente = c.codigo INNER JOIN vendedor vd ON v.cod_vendedor = vd.cod ORDER BY numero";
+                            $sql = "SELECT v.*, c.nome AS Cliente, vd.nome AS Vendedor FROM vendas v INNER JOIN cliente c ON v.cod_cliente = c.codigo INNER JOIN vendedor vd ON v.cod_vendedor = vd.cod ORDER BY numero";
                             $resu = mysqli_query($conn,$sql) or die(mysqli_connect_error());
                             while ($reg = mysqli_fetch_array($resu)){
                         ?>
                         <tbody>
                             <tr>
                                 <td><?= $reg["numero"] ?></td>
-                                <td><?= $reg["data"] ?></td>
-                                <td><?= $reg["prazo_entrega"] ?></td>
-                                <td><?= $reg["nome_cliente"] ?></td>
-                                <td><?= $reg["nome_vendedor"] ?></td>
-                                <!-- <td><a class="btn btn-warning" href="./editar.php?numero=<?= $reg['numero']?>">Editar</a>
-                                </td> -->
+                                <td><?= date('d/m/Y', strtotime($reg["data"])) ?></td>
+                                <td><?= date('d/m/Y', strtotime($reg["prazo_entrega"])) ?></td>
+                                <td><?= $reg["cond_pagto"] ?></td>
+                                <td><?= $reg["cod_cliente"] ?></td>
+                                <td><?= $reg["Cliente"] ?></td>
+                                <td><?= $reg["cod_vendedor"] ?></td>
+                                <td><?= $reg["Vendedor"] ?></td>
                                 <td>
-                                    <a class="btn btn-primary" href="./excluir.php?numero=<?= $reg['numero']?>">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
                                     <a class="btn btn-danger" href="./excluir.php?numero=<?= $reg['numero']?>">
                                         <i class="bi bi-trash3-fill"></i>
                                     </a>

@@ -90,8 +90,8 @@
                             <select name='cond_pagto' class="form-select">
                                 <option value="pix">Pix</option>
                                 <option value="dinheiro">Dinheiro</option>
-                                <option value="debito">Cartão de debito</option>
-                                <option value="credito">Cartão de credito</option>
+                                <option value="debito">Cartão de Debito</option>
+                                <option value="credito">Cartão de Credito</option>
                             </select>
                         </div>                        
                     </div>
@@ -143,7 +143,7 @@
                                     <th>Quantidade</th>
                                     <th>Sub Total</th>
                                 </tr></thead>
-                                <tbody></tbody>
+                                <tbody><p id="text-info">Nenhum produto adicionado.</p></tbody>
                             </table>                               
                         </div>
                     </div>
@@ -175,6 +175,7 @@
                         $("#resultTable tbody").empty();
                         $("#resultTable tbody").append(res)
                         $("#resultTable").css("display" , "table")
+                        $("#text-info").css("display" , "none")
                     },
                     erro: (xhr, status, error) => {
                         console.log("Error Ajax: ", error)
@@ -188,7 +189,6 @@
 
         //Função para remover um produto usando AJAX
         function removerProduto(index) {
-            console.log("CHAMOU A FUNÇÂO");
             $.ajax({
                 url: "./php/remove.php",
                 method: "POST",

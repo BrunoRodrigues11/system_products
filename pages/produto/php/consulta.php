@@ -8,32 +8,35 @@
     $msg_erro = "Nenhum registro encontrado.";
 
     if (empty($pesq_1)){
-        $sql = "SELECT * FROM vendedor ORDER BY cod";   
+        $sql = "SELECT * FROM cliente ORDER BY codigo";   
     }elseif (!empty($pesq_1)){
-        $sql = "SELECT * FROM vendedor WHERE nome LIKE '%$pesq_1%' ORDER BY nome";
+        $sql = "SELECT * FROM cliente WHERE nome LIKE '%$pesq_1%' ORDER BY nome";
         echo $msg_erro;
     }
     $resultado = mysqli_query($conn,$sql) or die("Erro ao retornar dados");
     
     while ($registro = mysqli_fetch_array($resultado)){
-        $cod = $registro ['cod'];
+        $cod = $registro ['codigo'];
         $nome = $registro ['nome'];
-        $telefone = $registro ['telefone'];        
         $endereco = $registro ['endereco'];
+        $telefone = $registro ['telefone'];
+        $limite_cred = $registro ['limite_cred'];
         $cidade = $registro ['cidade'];
+        $email = $registro ['email'];
+        $cpf = $registro ['cpf'];
         $estado = $registro ['estado'];
-        $porc_comissao = $registro ['parc_comissao'];
-    
 ?>
 
 <tr>
     <td><?=$cod ?></td>
     <td><?=$nome ?></td>
-    <td><?=$telefone ?></td>    
     <td><?=$endereco ?></td>
+    <td><?=$telefone ?></td>
+    <td><?=$limite_cred ?></td>
     <td><?=$cidade ?></td>
+    <td><?=$email ?></td>
+    <td><?=$cpf ?></td>
     <td><?=$estado ?></td>
-    <td><?=$porc_comissao ?></td>
 </tr>
 
 <?php

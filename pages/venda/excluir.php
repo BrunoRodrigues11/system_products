@@ -90,13 +90,13 @@
                     <table class="table table-responsive table-hover text-bg-light align-middle">
                         <thead>
                             <tr>
-                                <th>Item</th>                                
+                                <th>Item</th>
                                 <th>Código</th>
                                 <th>Produto</th>
-                                <th>Unidade Medida</th>
-                                <th>Preço</th>
-                                <th>Qtde</th>
-                                <th>Total</th>
+                                <th>Unid.</th>
+                                <th>Vr. Unitário</th>
+                                <th>Quantidade</th>
+                                <th>Sub Total</th>
                             </tr>
                         </thead>
                         <?php

@@ -70,7 +70,7 @@
                         <div class="col">
                             <label for="" class="form-label">Estoque Mínimo:</label>
                             <input type="number" name="estoque_min" class="form-control" maxlength="100"
-                                value="<?= $row['qtd_estoque'] ?>" required>
+                                value="<?= $row['qtd_estoque_min'] ?>" required>
                         </div>                        
                     </div>
                     <div class="row">

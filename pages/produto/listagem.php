@@ -51,8 +51,9 @@
                                 <th>Código</th>
                                 <th>Nome</th>
                                 <th>Preço</th>
-                                <th>Quantidade</th>
-                                <th>Unidade Medidade</th>
+                                <th>Estoque Atual</th>
+                                <th>Estoque Min</th>
+                                <th>Unid.</th>
                                 <th>Categoria</th>
                                 <th colspan='2'>Ações</th>
                             </tr>
@@ -68,6 +69,7 @@
                                 <td><?= $reg["nome"] ?></td>
                                 <td><?= $reg["preco"] ?></td>
                                 <td><?= $reg["qtd_estoque"] ?></td>
+                                <td><?= $reg["qtd_estoque_min"] ?></td>
                                 <td><?= $reg["unidade_medida"] ?></td>
                                 <td><?= $reg["nome_categoria"] ?></td>
                                 <td>

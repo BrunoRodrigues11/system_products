@@ -4,58 +4,61 @@
         session_start();
     }
 ?>
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultar Vendedores</title>
+    <title>Consultar Vendas</title>
     <link href="../../node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">  
     <link rel="icon" type="image/x-icon" href="../../components/assets/favicon.ico">
-</head>
+</head> 
+
 <body>
     <?php
         include("../../components/navbar.php");
     ?>
-
+    
     <div class="container">
         <div class="row pt-3">
             <div class="form-control">
                 <div class="row d-flex justify-content-center pt-3">
                     <div class="col-md-6">            
                         <h3 class="text-center">
-                            Consultar Vendedores
+                            Consultar Vendas
                         </h3>                
                     </div>                               
                 </div>
                 <div class="row d-flex justify-content-center p-5">
                     <div class="col-md-6">
                         <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1">
-                                <i class="bi bi-search"></i>
-                            </span>
-                            <input id="inputText" type="text" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="basic-addon1">
+                            <input id="inputData1" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="align-middle ps-2 pe-2">até</span>
+                            <input id="inputData2" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                             <button id="buttonSearch" class="btn btn-primary" type="button" aria-expanded="false">
                                 Pesquisar
                             </button>
                         </div>  
                     </div>
-                </div>   
+                </div>  
                 <table id="resultTable" style="display:none"  class="table table-responsive table-hover text-bg-light align-middle">
                     <thead><tr>
-                        <th>Codigo</th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Endereço</th>
-                        <th>Cidade</th>
-                        <th>Estado</th>
-                        <th>Comissão</th>
+                        <th>Número</th>
+                        <th>Data</th>
+                        <th>Prazo entrega</th>
+                        <th>Cond. Pagto</th>   
+                        <th>Cod. Cliente</th>                     
+                        <th>Cliente</th>
+                        <th>Cod. Vendedor</th>
+                        <th>Vendedor</th>
                     </tr></thead>
                     <tbody></tbody>
-                </table>                                            
+                </table>                           
             </div>
         </div>
     </div>
@@ -65,12 +68,13 @@
     <script> 
         $(document).ready(() => {
             $("#buttonSearch").click(() => {
-                var inputValue = $("#inputText").val();
+                var inputData1 = $("#inputData1").val();
+                var inputData2 = $("#inputData2").val();
 
                 $.ajax({
                     url: "./php/consulta.php",
                     type: "POST",
-                    data: {input: inputValue},
+                    data: {input1: inputData1, input2: inputData2},
                     success: (res) => {
                         $("#resultTable tbody").empty();
                         $("#resultTable tbody").append(res)
@@ -83,6 +87,6 @@
             })
         })
     </script>
-
 </body>
+
 </html>

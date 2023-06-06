@@ -3,7 +3,7 @@
     if (session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
-
+    $_SESSION['total_venda'] = 0;
     $prod = $_POST['inputP'];  
     $qtde = $_POST['inputQ'];  
 
@@ -11,6 +11,7 @@
     $resultado = mysqli_query($conn,$sql) or die("Erro ao retornar dados");
     $registro = mysqli_fetch_array($resultado);
 
+    $total = 0;
     $item = 0;
     $descri = $registro['nome'];
     $unid = $registro['unidade_medida'];
@@ -31,8 +32,6 @@
     // Verifica se existem produtos na sessão
     if (isset($_SESSION['produtos']) && count($_SESSION['produtos']) > 0) {
 
-        $total = 0;
-
         // Exibe os produtos adicionados
         foreach ($_SESSION['produtos'] as $index => $produto) {
             echo "<tr>";
@@ -50,6 +49,7 @@
             echo "</tr>";
 
             $total += $produto['subtotal'];
+            $_SESSION['total_venda'] = $total;
         }
 
         echo "<tr class='total'>";

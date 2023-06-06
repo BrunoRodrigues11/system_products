@@ -48,9 +48,13 @@
                     <table class="table table-responsive table-hover text-bg-light align-middle">
                         <thead>
                             <tr>
-                                <th>Código</th>
+                                <th>Codigo</th>
                                 <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Endereço</th>
                                 <th>Cidade</th>
+                                <th>Estado</th>
+                                <th>Comissão</th>
                                 <th colspan='2'>Ações</th>
                             </tr>
                         </thead>
@@ -63,7 +67,11 @@
                             <tr>
                                 <td><?= $reg["cod"] ?></td>
                                 <td><?= $reg["nome"] ?></td>
+                                <td><?= $reg["telefone"] ?></td>
+                                <td><?= $reg["endereco"] ?></td>
                                 <td><?= $reg["cidade"] ?></td>
+                                <td><?= $reg["estado"] ?></td>
+                                <td><?= $reg["parc_comissao"] ?></td>
                                 <td>
                                     <a class="btn btn-primary" href="./editar.php?cod=<?= $reg['cod']?>">
                                         <i class="bi bi-pencil-fill text-white"></i>

@@ -50,15 +50,20 @@
                     <table class="table table-responsive table-hover text-bg-light align-middle">
                         <thead>
                             <tr>
-                                <th>Código</th>
+                                <th>Codigo</th>
                                 <th>Nome</th>
-                                <th>Telefone</th>
-                                <th>Email</th>
+                                <th>CPF</th>
+                                <th>Telefone</th>  
+                                <th>Email</th> 
+                                <th>Endereço</th>           
+                                <th>Cidade</th>
+                                <th>Estado</th>
+                                <th>Limite Crédito</th>   
                                 <th colspan='2'>Ações</th>
                             </tr>
                         </thead>
                         <?php
-                            $sql = "SELECT * FROM cliente WHERE nome LIKE '%%' ORDER BY codigo";
+                            $sql = "SELECT * FROM cliente ORDER BY codigo";
                             $resu = mysqli_query($conn,$sql) or die(mysqli_connect_error());
                             while ($reg = mysqli_fetch_array($resu)){
                         ?>
@@ -66,8 +71,13 @@
                             <tr>
                                 <td><?= $reg["codigo"] ?></td>
                                 <td><?= $reg["nome"] ?></td>
-                                <td><?= $reg["telefone"] ?></td>
-                                <td><?= $reg["email"] ?></td>
+                                <td><?= $reg["cpf"] ?></td>
+                                <td><?= $reg["telefone"] ?></td>  
+                                <td><?= $reg["email"] ?></td>                              
+                                <td><?= $reg["endereco"] ?></td>                               
+                                <td><?= $reg["cidade"] ?></td>
+                                <td><?= $reg["estado"] ?></td>                                
+                                <td><?= $reg["limite_cred"] ?></td>                                
                                 <td>
                                     <a class="btn btn-primary" href="./editar.php?codigo=<?= $reg['codigo']?>">
                                         <i class="bi bi-pencil-fill text-white"></i>

@@ -125,11 +125,40 @@
         <div class="col-xl-8 col-lg-7">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Top produtos mais vendidos</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Últimas vendas</h6>
             </div>
             <div class="card-body">
               <div class="chart-area">
-                <img src="./components/assets/logo.png" alt="" class="img-logo">
+                <table class="table table-responsive table-hover text-bg-light align-middle">
+                      <thead>
+                          <tr>
+                              <th>Número</th>
+                              <th>Data</th>
+                              <th>Cond. Pagto</th>
+                              <th>Cliente</th>                     
+                              <th>Vendedor</th>
+                              <th>Total</th>
+                          </tr>
+                      </thead>
+                      <?php
+                          $sql = "SELECT v.*, c.nome AS Cliente, vd.nome AS Vendedor FROM vendas v INNER JOIN cliente c ON v.cod_cliente = c.codigo INNER JOIN vendedor vd ON v.cod_vendedor = vd.cod ORDER BY numero DESC LIMIT 7";
+                          $resu = mysqli_query($conn,$sql) or die(mysqli_connect_error());
+                          while ($reg = mysqli_fetch_array($resu)){
+                      ?>
+                      <tbody>
+                          <tr>
+                              <td><?= $reg["numero"] ?></td>
+                              <td><?= date('d/m/Y', strtotime($reg["data"])) ?></td>
+                              <td><?= $reg["cond_pagto"] ?></td>                              
+                              <td><?= $reg["Cliente"] ?></td>
+                              <td><?= $reg["Vendedor"] ?></td>
+                              <td>R$<?= $reg["total"] ?></td>
+                          </tr>
+                      </tbody>
+                      <?php                      
+                          };
+                      ?>
+                  </table>
               </div>
             </div>
           </div>
