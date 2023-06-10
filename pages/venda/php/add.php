@@ -13,6 +13,7 @@
 
     $total = 0;
     $item = 0;
+    $estoque = $registro['qtd_estoque'];
     $descri = $registro['nome'];
     $unid = $registro['unidade_medida'];
     $vlrUnit = $registro['preco'];
@@ -27,6 +28,7 @@
         'vlrUnit' => $vlrUnit,
         'qtde' => $qtde,
         'subtotal' => $subtotal,
+        'estoque' => $estoque
     ];
 
     // Verifica se existem produtos na sessão
@@ -50,10 +52,14 @@
 
             $total += $produto['subtotal'];
             $_SESSION['total_venda'] = $total;
-        }
-
-        echo "<tr class='total'>";
-        echo "<td>Total:</td>";
+        }      
+        echo "<tr>";
+        echo "<td></td>"; 
+        echo "<td></td>";  
+        echo "<td></td>"; 
+        echo "<td></td>"; 
+        echo "<td></td>";               
+        echo "<td>Total</td>";
         echo "<td>R$ $total</td>";
         echo "<td></td>";
         echo "</tr>";

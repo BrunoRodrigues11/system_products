@@ -111,11 +111,20 @@
                                         <td><?= $reg["cod"] ?></td>
                                         <td><?= $reg["nome"] ?></td>
                                         <td><?= $reg["unidade_medida"] ?></td>
-                                        <td><?= $reg["preco"] ?></td>
+                                        <td>R$ <?= $reg["preco"] ?></td>
                                         <td><?= $reg["quant_vendida"] ?></td>
-                                        <td><?= $reg["total"] ?></td>
+                                        <td>R$ <?= $reg["total"] ?></td>
                                     </tr>
                         <?php }} ?>
+                        <tr>
+                            <td></td>                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td>R$ <?= $row["total"] ?></td>                                        
+                        </tr>
                     </table>   
                     <div class="row">
                         <div class="col">

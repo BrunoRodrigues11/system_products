@@ -40,12 +40,24 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-search"></i>
                             </span>
-                            <input id="inputText" type="text" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="basic-addon1">
+                            <!-- <input id="inputProd" type="text" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="basic-addon1"> -->
+                            <?php 
+                                $queryCat = "SELECT * FROM categoria ORDER BY id";
+                                $resultadoCat = mysqli_query($conn, $queryCat);
+                                if (mysqli_num_rows($resultadoCat) > 0) { ?>
+                                    <select id="inputCat" name='id_categoria' class="form-select" placeholder="Selecione a categoria">
+                                        <?php foreach ($resultadoCat as $rowCat) { ?>
+                                        <option value="<?= $rowCat['id'] ?>"> <?= $rowCat['id'] ?> - <?= $rowCat['descricao'] ?></option>
+                            <?php } ?>
+                                    </select>
+                            <?php } else { ?>
+                                    <select name='id_categoria' class="form-select" hidden required></select>
+                            <?php } ?>
                             <button id="buttonSearch" class="btn btn-primary" type="button" aria-expanded="false">
                                 Pesquisar
                             </button>
                         </div>  
-                    </div>
+                    </div>                 
                 </div>  
                 <table id="resultTable" style="display:none"  class="table table-responsive table-hover text-bg-light align-middle">
                     <thead><tr>
@@ -68,12 +80,13 @@
     <script> 
         $(document).ready(() => {
             $("#buttonSearch").click(() => {
-                var inputValue = $("#inputText").val();
+                // var inputValueP = $("#inputProd").val();
+                var inputValueC = $("#inputCat").val();
 
                 $.ajax({
                     url: "./php/consulta.php",
                     type: "POST",
-                    data: {input: inputValue},
+                    data: {inputC: inputValueC},
                     success: (res) => {
                         $("#resultTable tbody").empty();
                         $("#resultTable tbody").append(res)

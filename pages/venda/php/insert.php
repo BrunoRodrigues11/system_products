@@ -4,22 +4,26 @@
         session_start();
     }
 
+    // CADASTRO DA VENDA
     $data = filter_input(INPUT_POST,'data',FILTER_SANITIZE_STRING);
     $prazo_entrega = filter_input(INPUT_POST, 'prazo_entrega', FILTER_SANITIZE_STRING);
     $cond_pagto =  filter_input(INPUT_POST,'cond_pagto',FILTER_SANITIZE_STRING);
     $cod_cliente = filter_input(INPUT_POST, 'cod_cliente', FILTER_SANITIZE_NUMBER_INT);
     $cod_vendedor =  filter_input(INPUT_POST,'cod_vendedor',FILTER_SANITIZE_NUMBER_INT);
     $total = $_SESSION['total_venda'];
-    $query = "INSERT INTO vendas (data, prazo_entrega, cod_vendedor,  cond_pagto, cod_cliente, total) 
+    $queryV = "INSERT INTO vendas (data, prazo_entrega, cod_vendedor,  cond_pagto, cod_cliente, total) 
                     VALUES ('$data', '$prazo_entrega', '$cod_vendedor',  '$cond_pagto', '$cod_cliente', '$total')";
-    $result = mysqli_query($conn, $query);
+    $resultV = mysqli_query($conn, $queryV);
 
+    // CONSULTA A ULTIMA VENDA CADASTRADA 
     $queryLastV = "SELECT * FROM vendas ORDER BY numero DESC LIMIT 1;";
     $resultLastV = mysqli_query($conn, $queryLastV);
     $rowLastV = mysqli_fetch_array($resultLastV);
 
+    // PEGA O NUMERO DA ULTIMA VENDA CADASTRADA
     $numV = $rowLastV['numero'];
 
+    // LOOP PARA PERCORRER O ARRAY DOS ITENS DA VENDA
     foreach ($_SESSION['produtos'] as $index => $produto) {
         $prod = $produto['produto']; 
         $descri = $produto['descricao'];  
@@ -27,10 +31,22 @@
         $vlrUnit = $produto['vlrUnit'];     
         $qtde = $produto['qtde'];  
         $subtotal = $produto['subtotal']; 
+        $estoque = $produto['estoque'];   
 
+        // DEBITA A QUANTIDADE COMPRADA DO ESTOQUE
+        $qtdeEstAtt = $estoque - $qtde;
+        
+        // ATUALIZA O ESTOQUE ATUAL
+        $queryUP = "UPDATE produtos 
+                    SET qtd_estoque ='$qtdeEstAtt'
+                    WHERE cod = '$prod'";
+        $resultUP = mysqli_query($conn, $queryUP) or die("Erro ao retornar dados UP");
+
+        // REALIZA O CADASTRO DOS ITENS REFERENTE A VENDA
         $queryIV = "INSERT INTO itens_vendas (cod_produto, numero_venda, quant_vendida, subtotal) 
                         VALUES ('$prod', $numV, '$qtde',  '$subtotal')";
-        $resultIV = mysqli_query($conn, $queryIV);                           
+        $resultIV = mysqli_query($conn, $queryIV);   
+
     }
     unset($_SESSION['produtos']);
     unset($_SESSION['total_venda']);

@@ -4,39 +4,39 @@
         session_start();
     }
 
-    $pesq_1 = $_POST['input'];
+    // $produto = $_POST['inputP'];
+    $categoria = $_POST['inputC'];    
+
     $msg_erro = "Nenhum registro encontrado.";
 
-    if (empty($pesq_1)){
-        $sql = "SELECT * FROM cliente ORDER BY codigo";   
-    }elseif (!empty($pesq_1)){
-        $sql = "SELECT * FROM cliente WHERE nome LIKE '%$pesq_1%' ORDER BY nome";
+    if (empty($categoria)){
+        $sql = "SELECT * FROM list_prod_cat ORDER BY cod";   
+    }elseif (!empty($categoria)){
+        // $sql = "SELECT * FROM list_prod_cat WHERE nome LIKE '%$produto%' AND id_categoria LIKE '%$categoria%' ORDER BY cod";
+        $sql = "SELECT * FROM list_prod_cat WHERE id_categoria LIKE '%$categoria%' ORDER BY cod";        
         echo $msg_erro;
     }
     $resultado = mysqli_query($conn,$sql) or die("Erro ao retornar dados");
     
     while ($registro = mysqli_fetch_array($resultado)){
-        $cod = $registro ['codigo'];
+        $cod = $registro ['cod'];
         $nome = $registro ['nome'];
-        $endereco = $registro ['endereco'];
-        $telefone = $registro ['telefone'];
-        $limite_cred = $registro ['limite_cred'];
-        $cidade = $registro ['cidade'];
-        $email = $registro ['email'];
-        $cpf = $registro ['cpf'];
-        $estado = $registro ['estado'];
+        $preco = $registro ['preco'];
+        $qtd_estoque = $registro ['qtd_estoque'];
+        $qtd_estoque_min = $registro ['qtd_estoque_min'];
+        $unidade_medida = $registro ['unidade_medida'];
+        $id_categoria = $registro ['id_categoria'];
+        $categoria = $registro ['categoria'];
 ?>
 
 <tr>
     <td><?=$cod ?></td>
     <td><?=$nome ?></td>
-    <td><?=$endereco ?></td>
-    <td><?=$telefone ?></td>
-    <td><?=$limite_cred ?></td>
-    <td><?=$cidade ?></td>
-    <td><?=$email ?></td>
-    <td><?=$cpf ?></td>
-    <td><?=$estado ?></td>
+    <td><?=$preco ?></td>
+    <td><?=$qtd_estoque ?></td>
+    <td><?=$qtd_estoque_min ?></td>
+    <td><?=$unidade_medida ?></td>
+    <td><?=$categoria ?></td>   
 </tr>
 
 <?php

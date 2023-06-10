@@ -32,6 +32,7 @@
               <li><a class="dropdown-item" href="../../pages/vendedor/consulta.php">Vendedores</a></li>
               <li><a class="dropdown-item" href="../../pages/cliente/consulta.php">Clientes</a></li>
               <li><a class="dropdown-item" href="../../pages/venda/consulta.php">Vendas</a></li>
+              <li><a class="dropdown-item" href="../../pages/venda/consultaP.php">Pedidos</a></li>
               <li><a class="dropdown-item" href="../../pages/produto/consulta.php">Produtos</a></li>
             </ul>
           </div>

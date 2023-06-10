@@ -151,7 +151,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <input type="submit" value="Salvar" class="btn btn-success">
-                            <input type="button" value="Cancelar" class="btn btn-danger">
+                            <input type="button" value="Cancelar" class="btn btn-danger" id="buttonCancel">
                         </div>                      
                     </div>  
                 </form>
@@ -163,6 +163,7 @@
     <script src="../../node_modules/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/main.js"></script>
     <script> 
+        // Função para adicionar um produto 
         $(document).ready(() => {
             $("#buttonAdd").click(() => {
                 var inputValueP = $("#inputProduto").val();
@@ -184,10 +185,15 @@
 
                 $("#inputProduto").val("");
                 $("#inputQtde").val("");
-            })         
+            })     
+
+            //Função para cancelar uma venda             
+            $("#buttonCancel").click(function(){
+                window.location.href = "./php/cancel.php"
+            });                
         });
 
-        //Função para remover um produto usando AJAX
+        //Função para remover um produto 
         function removerProduto(index) {
             $.ajax({
                 url: "./php/remove.php",
