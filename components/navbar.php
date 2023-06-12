@@ -41,7 +41,7 @@
               Relatórios
             </button>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../pages/">Pedidos</a></li>
+              <li><a class="dropdown-item" href="../../pages/venda/relatorio.php">Pedidos</a></li>
               <li><a class="dropdown-item" href="../../pages/produto/relatorio.php">Produtos</a></li>
             </ul>
           </div>

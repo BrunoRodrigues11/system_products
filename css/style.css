@@ -34,4 +34,9 @@ body{
 
 .conteudo-extra {
     display: none;
+    
+}
+
+.linha-expansivel:hover{
+    cursor: pointer;
 }

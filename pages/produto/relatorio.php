@@ -4,7 +4,7 @@
     
     // Função para buscar os dados do banco de dados
     function buscarDadosDoBanco() {
-        // Conexão com o banco de dados (substitua pelas suas informações de conexão)
+        // Conexão com o banco de dados
         include('../../connection/connection.php');
     
         // Consulta para buscar as categorias

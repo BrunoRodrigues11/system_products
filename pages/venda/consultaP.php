@@ -99,10 +99,9 @@
                     var conteudoExtra = document.querySelector("." + target); 
 
                     if (conteudoExtra.style.display === "table-row") {
-                        conteudoExtra.style.display = "none";
-
+                        conteudoExtra.style.display = "none";                    
                     } else {
-                        conteudoExtra.style.display = "table-row";
+                        conteudoExtra.style.display = "table-row";                          
                     }                
                 })
             });

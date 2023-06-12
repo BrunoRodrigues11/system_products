@@ -35,6 +35,7 @@
         $cliente = $registro ['Cliente'];
         $cod_vende = $registro ['cod_vendedor'];
         $vendedor = $registro ['Vendedor'];    
+        $totalV = $registro ['total'];            
 ?>
 
 <tr class='linha-expansivel' data-target="<?= $conteudoExtraID ?>">
@@ -88,9 +89,16 @@
                         <td><?=$qtde ?></td>
                         <td><?=$total ?></td>     
                     </tr>
-                    <?php
-                        }
-                    ?>
+                    <?php } ?>
+                    <tr>
+                        <td></td>                            
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total</td>
+                        <td>R$ <?= $registro ['total'] ?></td>                                        
+                    </tr>
                 </tbody>
             </table>         
         </div>        
