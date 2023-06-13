@@ -49,7 +49,12 @@
         $dompdf->setBasePath("../../node_modules/bootstrap/css/bootstrap.min.css");
         // Iniciar o conteúdo do documento HTML
         $html = '<html><head>';     
-        $html .= '</head><body>';
+        $html .= '</head><body>
+            <style>
+            td{
+                text-align: center;
+            }
+            </style>';
 
          // Loop pelas categorias
          foreach ($categorias as $categoria) {                
