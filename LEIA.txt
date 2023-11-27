@@ -1,0 +1,1 @@
+Execute o script que está dentro da pasta sql para criar o banco de dados

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg text-bg-dark ">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">
-        <img src="./components/assets/logo2.png" alt="" class="img-logo">  
+        <img src="./components/assets/logo2.png" alt="" class="img-logo">
       </a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -25,7 +27,7 @@
             </ul>
           </div>
           <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+            <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Consultas
             </button>
             <ul class="dropdown-menu">
@@ -40,14 +42,16 @@
             <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Relatórios
             </button>
-              <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="pages/venda/relatorio.php">Pedidos</a></li>
               <li><a class="dropdown-item" href="pages/produto/relatorio.php">Produtos</a></li>
             </ul>
           </div>
-        </ul>        
+          <li class="nav-item"><a class="nav-link text-bg-dark" href="admin/auth/php/sair.php">Sair</a></li>
+        </ul>
       </div>
     </div>
   </nav>
 </body>
+
 </html>
