@@ -18,6 +18,8 @@ while ($registro = mysqli_fetch_array($resultado)) {
     $qtde = $registro['quant_vendida'];
     $total = $registro['total'];
     $numerV = $registro['numero_venda'];
+
+    echo $contadorItem;
     ?>
 
     <tr>

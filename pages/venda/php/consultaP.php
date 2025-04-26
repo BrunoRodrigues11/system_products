@@ -74,6 +74,7 @@ while ($registro = $resultado->fetch_assoc()) {
                         $sqlIV = "SELECT * FROM list_itens_venda WHERE numero_venda = '$num'";
                         $resultadoIV = mysqli_query($conn, $sqlIV) or die(mysqli_connect_error());
 
+                        $contadorItem = 1; // reinicia do 1 para cada venda
                         while ($registroIV = mysqli_fetch_array($resultadoIV)) {
                             $item = $registroIV['num_item'];
                             $cod = $registroIV["cod"];
@@ -84,7 +85,7 @@ while ($registro = $resultado->fetch_assoc()) {
                             $total = $registroIV['total'];
                             ?>
                             <tr>
-                                <td><?= $item ?></td>
+                                <td><?= str_pad($contadorItem++, 2, "0", STR_PAD_LEFT) ?></td> <!-- Ex: 01, 02, 03... -->
                                 <td><?= $cod ?></td>
                                 <td><?= $nome ?></td>
                                 <td><?= $um ?></td>
